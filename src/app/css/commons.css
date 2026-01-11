@@ -1,0 +1,35 @@
+/* 배경 (body는 유지) */
+body {
+    font-family: 'Orbitron', sans-serif;
+    overflow: hidden;
+    &:after {
+        /*background-color: #000;*/
+        /*background-image: url('/bg/bg-2.jpg');*/
+        /*background-position: bottom;*/
+        /*background-repeat: no-repeat;*/
+        /*background-size: cover;*/
+        bottom: 0;
+        content: '';
+        filter: blur(4px);
+        left: 0;
+        opacity: 0.8;
+        position: absolute;
+        right: 0;
+        top: 0;
+        will-change: transform;
+        overflow: hidden;
+        z-index: -1;
+    }
+}
+
+/* 전역 배율 변수 */
+:root { --app-scale: 0.9; }
+
+/* 화면 전체를 스케일하되, 좌상단 기준으로 확대/축소 */
+#app-zoom-wrapper {
+    transform: scale(var(--app-scale));
+    transform-origin: 0 0;
+    /* 스케일 시 실제 렌더 크기가 줄어드는 걸 보정 (스크롤/레이아웃 깨짐 방지) */
+    width: calc(100% / var(--app-scale));
+    height: calc(100% / var(--app-scale));
+}
