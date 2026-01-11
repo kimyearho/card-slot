@@ -1,11 +1,9 @@
-'use client'
-
 import LoginButton from '@/components/buttons/Login'
 
-export default function Home() {
+export default async function LoginPage() {
 	return (
-		<div className="">
+		<>
 			<LoginButton />
-		</div>
+		</>
 	)
 }
