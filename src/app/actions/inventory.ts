@@ -36,6 +36,16 @@ export async function getAllCards(id: string): Promise<IResponse<Card[]>> {
 	return { data }
 }
 
+export async function fetchOwnedCards(id: string) {
+	const client = await createClient()
+	const { data } = await client.rpc('get_cards_with_counts', {
+		uid: id,
+		p_grade: null,
+		owned_only: true,
+	})
+	return { data }
+}
+
 /**
  * 가챠 최대 개수 조회
  *

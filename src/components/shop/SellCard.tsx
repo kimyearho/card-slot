@@ -1,9 +1,7 @@
-'use client'
-
-import Image from 'next/image'
 import { CardListProps } from '@/interface/ICard'
+import Image from 'next/image'
 
-const CardList = (props: CardListProps) => {
+const SellCard = (props: CardListProps) => {
 	const cards = props.cardList ?? []
 
 	return (
@@ -11,9 +9,7 @@ const CardList = (props: CardListProps) => {
 			<div className="h-195 overflow-y-auto p-4">
 				<div className="grid grid-cols-[repeat(auto-fit,minmax(155px,1fr))] gap-4 justify-items-centerbg-[#ffffff0a]">
 					{cards?.map((card) => {
-						const isEpicOwned = card.grade === 'epic' && card.user_count > 0
 						const imageClass = card.user_count <= 0 ? 'grayscale opacity-50' : ''
-
 						const cardImage = (
 							<Image
 								src={`/images/char/${card.name}.png`}
@@ -24,14 +20,16 @@ const CardList = (props: CardListProps) => {
 								className={imageClass}
 							/>
 						)
-
 						return (
 							<div key={card.id} className="relative">
-								{isEpicOwned ? <div className="inventory-card-back revealed epic">{cardImage}</div> : cardImage}
+								{cardImage}
 								{card.user_count > 0 && (
-									<div className="absolute -bottom-2 -right-2 flex items-center justify-center w-8 h-8 bg-black/70 text-white text-base font-bold rounded-lg border border-white shadow-lg.">
-										{card.user_count}
-									</div>
+									<>
+										<div className="absolute -bottom-2 -right-2 flex items-center justify-center w-8 h-8 bg-black/70 text-white text-base font-bold rounded-lg border border-white shadow-lg.">
+											{card.user_count}
+										</div>
+										<div className="absolute -bottom-2 -right-2 flex items-center justify-center">🪙 {card.price}</div>
+									</>
 								)}
 							</div>
 						)
@@ -42,4 +40,4 @@ const CardList = (props: CardListProps) => {
 	)
 }
 
-export default CardList
+export default SellCard

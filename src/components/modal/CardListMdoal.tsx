@@ -3,14 +3,11 @@
 import React, { memo } from 'react'
 import Modal from '@/components/modal/Modal'
 import { useAuthUser } from '@/provider/CommonProvider'
-import { Card, getAllCards } from '@/app/actions/inventory'
+import { getAllCards } from '@/app/actions/inventory'
 import { useQuery } from '@tanstack/react-query'
 import CardList from '@/components/card/CardList'
-
-interface ModalProps {
-	isOpen: boolean
-	onClose: (isOpen: boolean) => void
-}
+import { Card } from '@/interface/ICard'
+import { ModalProps } from '@/interface/IModal'
 
 const fetchAllCards = async (uid: string): Promise<Array<Card>> => {
 	const res = await getAllCards(uid)
@@ -19,7 +16,6 @@ const fetchAllCards = async (uid: string): Promise<Array<Card>> => {
 
 const CardListMdoal = (props: ModalProps) => {
 	const { uid } = useAuthUser()
-
 	const { data, isLoading } = useQuery({
 		queryKey: ['cardsAll'],
 		queryFn: () => fetchAllCards(uid as string),
@@ -27,10 +23,12 @@ const CardListMdoal = (props: ModalProps) => {
 		placeholderData: [] as Card[], // 빈값
 	})
 
+	if (!props.isOpen) return null
+
 	return (
 		<>
 			<Modal size={'2xl'} isOpen={props.isOpen} onClose={() => props.onClose(false)}>
-				<CardList cardList={data ?? []} />
+				{isLoading ? <div className="p-10 text-center text-white">로딩 중...</div> : <CardList cardList={data ?? []} />}
 			</Modal>
 		</>
 	)

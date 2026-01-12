@@ -1,9 +1,10 @@
 'use client'
 
-import React, { memo } from 'react'
+import React, { useState, memo } from 'react'
 import LogoutButton from '@/components/buttons/Logout'
 import Button from '@/components/buttons/Button'
 import CardListMdoal from '@/components/modal/CardListMdoal'
+import ShopSellModal from '@/components/modal/ShopSellModal'
 
 interface MenuItem {
 	isMenuOpen: boolean
@@ -18,11 +19,14 @@ const SliderMenu = (props: MenuItem) => {
 		{ label: '설정', icon: '⚙️', key: 'settings' },
 	]
 
-	const [isOpen, setIsOpen] = React.useState(false)
+	const [isOpen, setIsOpen] = useState(false)
+	const [sellModalOpen, setSellModalOpen] = useState(false)
 
 	const handleClick = (params: string) => {
 		if (params === 'allCard') {
 			setIsOpen(true)
+		} else if (params === 'shop') {
+			setSellModalOpen(true)
 		}
 	}
 
@@ -67,7 +71,8 @@ const SliderMenu = (props: MenuItem) => {
 					</div>
 				</div>
 			</div>
-			<CardListMdoal isOpen={isOpen} onClose={() => setIsOpen(false)} />
+			{isOpen && <CardListMdoal isOpen={isOpen} onClose={() => setIsOpen(false)} />}
+			{sellModalOpen && <ShopSellModal isOpen={sellModalOpen} onClose={() => setSellModalOpen(false)} />}
 		</>
 	)
 }

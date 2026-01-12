@@ -38,7 +38,7 @@ const Modal = ({ isOpen, onClose, title, children, size = 'md' }: ModalProps) =>
 			>
 				{/* 헤더 영역 */}
 				<div className="flex items-center justify-between mb-4">
-					<h3 className="text-xl font-bold text-white">{title || '알림'}</h3>
+					<h2 className="text-xl font-bold text-white">{title || '알림'}</h2>
 					<button onClick={onClose} className="text-white/50 hover:text-white transition-colors text-2xl">
 						✕
 					</button>
