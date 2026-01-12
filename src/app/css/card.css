@@ -1,188 +1,215 @@
 /* ======================= 컨테이너 ======================= */
 .slot-window {
-    border-radius: 8px;
-    position: relative;
-    margin: 0 auto;
-    height: 368px;
-    overflow: visible;
+	border-radius: 8px;
+	position: relative;
+	margin: 0 auto;
+	height: 368px;
+	overflow: visible;
 }
 
 /* ======================= 카드 ======================= */
 .card-flip {
-    position: relative; /* 기존 absolute → relative */
-    top: 0;
-    width: 220px;
-    height: 338px;
-    perspective: 1000px;
-    will-change: left, transform;
+	position: relative; /* 기존 absolute → relative */
+	top: 0;
+	width: 220px;
+	height: 338px;
+	perspective: 1000px;
+	will-change: left, transform;
 }
 
 .card-inner {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    transform-style: preserve-3d;
-    transform-origin: center center;
-    will-change: transform;
-    z-index: 5;
+	position: relative;
+	width: 100%;
+	height: 100%;
+	transform-style: preserve-3d;
+	transform-origin: center center;
+	will-change: transform;
+	z-index: 5;
 }
 .card-inner.spinning {
-    transition: none;
+	transition: none;
 }
 
 /* ======================= 앞/뒤 면 ======================= */
 .card-front,
 .card-back {
-    position: absolute;
-    inset: 0;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-    border-radius: 14px;
-    overflow: hidden;
+	position: absolute;
+	inset: 0;
+	backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
+	border-radius: 14px;
+	overflow: hidden;
 }
 
 .card-front {
-    transform: rotateY(0deg);
+	transform: rotateY(0deg);
 }
 .card-back {
-    transform: rotateY(180deg);
+	transform: rotateY(180deg);
 }
 
 /* 뒷면 내부 레이어 (reveal 전환) */
 .card-back .back-cover {
-    position: absolute;
-    inset: 0;
-    opacity: 1;
-    transition: opacity 200ms ease;
-    z-index: 2;
+	position: absolute;
+	inset: 0;
+	opacity: 1;
+	transition: opacity 200ms ease;
+	z-index: 2;
 }
 .card-back .back-result {
-    position: absolute;
-    inset: 0;
-    opacity: 0;
-    transition: opacity 200ms ease;
-    z-index: 1;
+	position: absolute;
+	inset: 0;
+	opacity: 0;
+	transition: opacity 200ms ease;
+	z-index: 1;
 }
 .card-back.revealed .back-cover {
-    opacity: 0;
+	opacity: 0;
 }
 .card-back.revealed .back-result {
-    opacity: 1;
+	opacity: 1;
 }
 
 /* ======================= 스페셜 카드 (EPIC 등) ======================= */
 .face-wrap {
-    position: absolute;
-    inset: 0;
-    transform-style: preserve-3d;
-    --yaw: 0deg;
-    transform: rotateY(var(--yaw));
-    transition: transform 420ms ease;
-    will-change: transform;
-    z-index: 5;
+	position: absolute;
+	inset: 0;
+	transform-style: preserve-3d;
+	--yaw: 0deg;
+	transform: rotateY(var(--yaw));
+	transition: transform 420ms ease;
+	will-change: transform;
+	z-index: 5;
 }
 .card-inner.spinning .face-wrap {
-    transition: none;
-    pointer-events: none;
+	transition: none;
+	pointer-events: none;
 }
 
 /* EPIC 앞면 고정 */
 .face-wrap.epic-mask {
-    --yaw: 180deg;
+	--yaw: 180deg;
 }
 
 /* 흔들림 효과 */
 .face-wrap.epic-tease {
-    animation: epic-wiggle 900ms ease-in-out infinite;
+	animation: epic-wiggle 900ms ease-in-out infinite;
 }
 @keyframes epic-wiggle {
-    0%   { transform: rotateY(var(--yaw)) rotate(0deg) translateX(0); }
-    15%  { transform: rotateY(var(--yaw)) rotate(-1.2deg) translateX(-2px); }
-    30%  { transform: rotateY(var(--yaw)) rotate(1.1deg) translateX(2px); }
-    45%  { transform: rotateY(var(--yaw)) rotate(-0.8deg) translateX(-1px); }
-    60%  { transform: rotateY(var(--yaw)) rotate(0.8deg) translateX(1px); }
-    75%  { transform: rotateY(var(--yaw)) rotate(-0.4deg) translateX(-1px); }
-    100% { transform: rotateY(var(--yaw)) rotate(0deg) translateX(0); }
+	0% {
+		transform: rotateY(var(--yaw)) rotate(0deg) translateX(0);
+	}
+	15% {
+		transform: rotateY(var(--yaw)) rotate(-1.2deg) translateX(-2px);
+	}
+	30% {
+		transform: rotateY(var(--yaw)) rotate(1.1deg) translateX(2px);
+	}
+	45% {
+		transform: rotateY(var(--yaw)) rotate(-0.8deg) translateX(-1px);
+	}
+	60% {
+		transform: rotateY(var(--yaw)) rotate(0.8deg) translateX(1px);
+	}
+	75% {
+		transform: rotateY(var(--yaw)) rotate(-0.4deg) translateX(-1px);
+	}
+	100% {
+		transform: rotateY(var(--yaw)) rotate(0deg) translateX(0);
+	}
 }
 
 /* 클릭 히트 오버레이 */
 .hit-overlay {
-    position: absolute;
-    inset: -12px; /* 카드 전체 덮기 */
-    border: 0;
-    padding: 0;
-    cursor: pointer;
-    z-index: 60;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+	position: absolute;
+	inset: -12px; /* 카드 전체 덮기 */
+	border: 0;
+	padding: 0;
+	cursor: pointer;
+	z-index: 60;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .click-hint {
-    color: #fff;
-    font-size: 20px;
-    font-weight: bold;
-    padding: 6px 16px;
-    background: rgba(0,0,0,0.7);
-    border-radius: 6px;
-    animation: pulseText 1.2s infinite;
+	color: #fff;
+	font-size: 20px;
+	font-weight: bold;
+	padding: 6px 16px;
+	background: rgba(0, 0, 0, 0.7);
+	border-radius: 6px;
+	animation: pulseText 1.2s infinite;
 }
 
 @keyframes pulseText {
-    0%, 100% { transform: scale(1); opacity: 0.9; }
-    50% { transform: scale(1.15); opacity: 1; }
+	0%,
+	100% {
+		transform: scale(1);
+		opacity: 0.9;
+	}
+	50% {
+		transform: scale(1.15);
+		opacity: 1;
+	}
 }
 .card-inner.spinning + .hit-overlay {
-    pointer-events: none;
+	pointer-events: none;
 }
 
 /* ======================= 등급별 효과 ======================= */
 /* 공통 빛 효과 (frame 마스크 기반) */
 .card-back::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-size: 300% 300%;
-    background-position: 0% 50%;
-    animation: shine 1s linear infinite;
-    -webkit-mask-image: url('/images/char/frame-empty.png');
-    -webkit-mask-repeat: no-repeat;
-    -webkit-mask-size: cover;
-    -webkit-mask-position: center;
-    mask-image: url('/images/char/frame-empty.png');
-    mask-repeat: no-repeat;
-    mask-size: cover;
-    mask-position: center;
-    pointer-events: none;
-    z-index: 2;
-    mix-blend-mode: screen;
-    filter: blur(20px);
-    opacity: 0.8;
+	content: '';
+	position: absolute;
+	inset: 0;
+	background-size: 300% 300%;
+	background-position: 0% 50%;
+	animation: shine 1s linear infinite;
+	-webkit-mask-image: url('/images/char/frame-empty.png');
+	-webkit-mask-repeat: no-repeat;
+	-webkit-mask-size: cover;
+	-webkit-mask-position: center;
+	mask-image: url('/images/char/frame-empty.png');
+	mask-repeat: no-repeat;
+	mask-size: cover;
+	mask-position: center;
+	pointer-events: none;
+	z-index: 2;
+	mix-blend-mode: screen;
+	filter: blur(20px);
+	opacity: 0.8;
 }
 @keyframes shine {
-    0%   { background-position: 0% 50% }
-    50%  { background-position: 100% 50% }
-    100% { background-position: 0% 50% }
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
 }
 
 /* 희귀도별 색상 */
 .card-back.revealed.rare {
-    filter: drop-shadow(-1px 1px 10px #3b4dec);
+	filter: drop-shadow(-1px 1px 10px #3b4dec);
 }
 .card-back.revealed.epic {
-    filter: drop-shadow(-1px 1px 10px #af2222);
+	filter: drop-shadow(-1px 1px 10px #af2222);
 }
 .card-back.revealed.legendary {
-    filter: drop-shadow(-1px 1px 10px #ff9020);
+	filter: drop-shadow(-1px 1px 10px #ff9020);
 }
 .card-back.revealed.rare::before {
-    background-image: linear-gradient(120deg, #2030a0, #4070ff, #a0c8ff, #4070ff);
+	background-image: linear-gradient(120deg, #2030a0, #4070ff, #a0c8ff, #4070ff);
 }
 .card-back.revealed.epic::before {
-    background-image: linear-gradient(120deg, #7020a0, #a050ff, #e0b0ff, #a050ff);
+	background-image: linear-gradient(120deg, #7020a0, #a050ff, #e0b0ff, #a050ff);
 }
 .card-back.revealed.legendary::before {
-    background-image: linear-gradient(120deg, #ff9020, #ffd060, #fff0b0, #ffd060);
+	background-image: linear-gradient(120deg, #ff9020, #ffd060, #fff0b0, #ffd060);
 }
 
 /* ======================= 이미지 채우기 ======================= */
@@ -191,75 +218,82 @@
 .card-back picture,
 .card-front img,
 .card-front picture {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: center;
 }
 
 /* ======================= 기타 ======================= */
 .debug-overlay {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    padding: 6px;
-    font-size: 12px;
-    line-height: 1.3;
-    background: rgba(0, 0, 0, .6);
-    color: #fff;
-    pointer-events: none;
-    z-index: 3;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	padding: 6px;
+	font-size: 12px;
+	line-height: 1.3;
+	background: rgba(0, 0, 0, 0.6);
+	color: #fff;
+	pointer-events: none;
+	z-index: 3;
 }
 
 /* 그라디언트 텍스트 */
 .gradient-text {
-    font-size: 25px;
-    font-weight: bold;
-    background: linear-gradient(270deg,#ff6ec4,#7873f5,#4ade80,#facc15,#f87171);
-    background-size: 800% 800%;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: gradientFlow 6s ease infinite;
+	font-size: 25px;
+	font-weight: bold;
+	background: linear-gradient(270deg, #ff6ec4, #7873f5, #4ade80, #facc15, #f87171);
+	background-size: 800% 800%;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	animation: gradientFlow 6s ease infinite;
 }
 @keyframes gradientFlow {
-    0%   { background-position: 0% 50%; }
-    50%  { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
 }
 
 .new-badge {
-    position: absolute;
-    top: 12px;
-    right: 5px;
-    padding: 3px 8px;
-    font-size: 13px;
-    font-weight: bold;
-    color: #fff;
-    background: linear-gradient(135deg, #ff6b6b, #feca57);
-    border-radius: 4px;
-    transform: rotate(0deg);
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
-    /* ✅ 애니메이션 추가 */
-    animation: badgePulse 1.2s ease-in-out infinite;
-    z-index: 100;
+	position: absolute;
+	top: 12px;
+	right: 5px;
+	padding: 3px 8px;
+	font-size: 13px;
+	font-weight: bold;
+	color: #fff;
+	background: linear-gradient(135deg, #ff6b6b, #feca57);
+	border-radius: 4px;
+	transform: rotate(0deg);
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+	text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+	/* ✅ 애니메이션 추가 */
+	animation: badgePulse 1.2s ease-in-out infinite;
+	z-index: 100;
 }
 
 @keyframes badgePulse {
-    0%, 100% {
-        transform: rotate(0deg) scale(1);
-    }
-    50% {
-        transform: rotate(0deg) scale(1.15);
-    }
+	0%,
+	100% {
+		transform: rotate(0deg) scale(1);
+	}
+	50% {
+		transform: rotate(0deg) scale(1.15);
+	}
 }
 
 /* 테이블 zebra row */
-tbody > tr[data-selectable="false"]:nth-of-type(odd) {
-    @apply bg-gray-100 dark:bg-gray-800;
+tbody > tr[data-selectable='false']:nth-of-type(odd) {
+	@apply bg-gray-100 dark:bg-gray-800;
 }
-tbody > tr[data-selectable="false"]:nth-of-type(even) {
-    @apply bg-white dark:bg-gray-900;
+tbody > tr[data-selectable='false']:nth-of-type(even) {
+	@apply bg-white dark:bg-gray-900;
 }

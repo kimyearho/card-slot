@@ -1,47 +1,53 @@
 .inventory-card-back {
-    position: relative !important; /* ::before 기준점 */
-    display: inline-block !important; /* 이미지 크기에 맞게 */
-    transform: none;
+	position: relative !important; /* ::before 기준점 */
+	display: inline-block !important; /* 이미지 크기에 맞게 */
+	transform: none;
 }
 
 .inventory-card-back,
 .inventory-card-back::before {
-    will-change: transform;
-    backface-visibility: hidden;
-    transform-style: preserve-3d;
+	will-change: transform;
+	backface-visibility: hidden;
+	transform-style: preserve-3d;
 }
 
 .inventory-card-back::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-            270deg,
-            rgba(255, 0, 255, 0.7),
-            rgba(0, 255, 255, 0.7),
-            rgba(0, 0, 255, 0.7),
-            rgba(255, 255, 255, 0.7)
-    );
-    background-size: 300% 300%;
-    background-position: 0% 50%;
-    animation: shine2 3s linear infinite;
-    -webkit-mask-image: url('/images/char/frame-empty.png');
-    -webkit-mask-repeat: no-repeat;
-    -webkit-mask-size: cover;
-    -webkit-mask-position: center;
-    mask-image: url('/images/char/frame-empty.png');
-    mask-repeat: no-repeat;
-    mask-size: cover;
-    mask-position: center;
-    mix-blend-mode: screen;
-    filter: blur(12px);
-    opacity: 0.8;
-    pointer-events: none;
-    z-index: 3;
+	content: '';
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(
+		270deg,
+		rgba(255, 0, 255, 0.7),
+		rgba(0, 255, 255, 0.7),
+		rgba(0, 0, 255, 0.7),
+		rgba(255, 255, 255, 0.7)
+	);
+	background-size: 300% 300%;
+	background-position: 0% 50%;
+	animation: shine2 3s linear infinite;
+	-webkit-mask-image: url('/images/char/frame-empty.png');
+	-webkit-mask-repeat: no-repeat;
+	-webkit-mask-size: cover;
+	-webkit-mask-position: center;
+	mask-image: url('/images/char/frame-empty.png');
+	mask-repeat: no-repeat;
+	mask-size: cover;
+	mask-position: center;
+	mix-blend-mode: screen;
+	filter: blur(12px);
+	opacity: 0.8;
+	pointer-events: none;
+	z-index: 3;
 }
 
 @keyframes shine2 {
-    0%   { background-position: 0% 50% }
-    50%  { background-position: 100% 50% }
-    100% { background-position: 0% 50% }
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
 }
